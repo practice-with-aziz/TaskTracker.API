@@ -12,7 +12,7 @@ namespace TaskTracker.API.Models
 
         [MaxLength(300)]
         public string Description { get; set; } = string.Empty;
-        public DateTime DueDate { get; set; }
+        public DateOnly DueDate { get; set; }
         public bool IsCompleted { get; set; }
         public Priority Priority { get; set; }
     }
