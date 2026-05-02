@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using TaskTracker.API.Data;
 using TaskTracker.API.Models;
@@ -6,6 +7,7 @@ using TaskTracker.API.Models;
 namespace TaskTracker.API.Controllers
 {
     [ApiController]
+    [Authorize]
     [Route("api/[controller]")]
     public class TaskItemsController : ControllerBase
     {
@@ -63,6 +65,7 @@ namespace TaskTracker.API.Controllers
         }
 
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public async Task<ActionResult> DeleteTask(int id)
         {
             var task = await _context.TaskItems.FindAsync(id);
